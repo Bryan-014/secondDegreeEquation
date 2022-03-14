@@ -1,7 +1,7 @@
-let errors = false;
+let haveErrors = false;
 
 function calculate() {
-    errors = false;
+    haveErrors = false;
     validEmptyTextBoxes();
 
     let a = validComponent(document.getElementById("inputA").value.replace(",", "."));
@@ -10,25 +10,51 @@ function calculate() {
 
     if (a == 0) {
         alert("O valor de \"A\" não pode ser 0");
-        errors = true;
+        haveErrors = true;
     }
 
-    if (errors) {
+    if (haveErrors) {
         return;
     }
 
     let rootDelt = Math.sqrt(calculateDelt(a, b, c));
 
-    if (errors) {
+    if (haveErrors) {
         return;
     }
 
     let doubleA = 2 * a;
 
-    let XOne = calculateXOne(b, rootDelt, doubleA);
-    let XTwo = calculateXTwo(b, rootDelt, doubleA);
+    let XOne = calculateX(b, rootDelt, doubleA, "positive");
+    let XTwo = calculateX(b, rootDelt, doubleA, "negative");
 
     alert("O valor de x¹ é: " + XOne + " e o valor de x² é: " + XTwo)
+}
+function calculateDelt(varA, varB, varC) {
+    let squareB = varB * varB;
+    let delt = squareB - 4 * varA * varC;
+    if (delt < 0) {
+        alert("O valor de delta não pode ser negativo!")
+        haveErrors = true;
+    }
+    return delt;
+}
+function calculateX(varB, delt, varA, operation) {
+    let up = 0;
+    if (operation == "positive") {
+        up = - varB + delt;
+    } else if (operation == "negative") {
+        up = - varB - delt;
+    }
+    return up / varA;
+}
+function validComponent(component) {
+    if(isNaN(component)){
+        alert("O valor: " + component + " é inválido");
+        haveErrors = true;
+    }
+
+    return parseFloat(component);
 }
 function validEmptyTextBoxes() {
     if (document.getElementById("inputA").value == "") {
@@ -40,29 +66,4 @@ function validEmptyTextBoxes() {
     if (document.getElementById("inputC").value == "") {
         document.getElementById("inputC").value = 0;
     }
-}
-function validComponent(component) {
-    if(isNaN(component)){
-        alert("O valor: " + component + " é inválido");
-        errors = true;
-    }
-
-    return parseFloat(component);
-}
-function calculateDelt(a, b, c) {
-    let squareB = b * b;
-    let x = squareB - 4 * a * c;
-    if (x < 0) {
-        alert("O valor de delta não pode ser negativo!")
-        errors = true;
-    }
-    return x;
-}
-function calculateXOne(b, deltRoot, a) {
-    let up = - b + deltRoot;
-    return up / a;
-}
-function calculateXTwo(b, deltRoot, a) {
-    let up = - b - deltRoot;
-    return up / a;
 }
