@@ -18,11 +18,10 @@
     height: 487px;
     border-radius: 15px;
 }
-input[type="text"] {
+input[type="number"] {
     border: 1px solid #000;
     width: 89%;
     font-size: 20px;
-    border-radius: 7px;
 }
 input[type="button"] {
     border: 1px solid #000;

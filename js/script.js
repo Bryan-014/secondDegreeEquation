@@ -4,9 +4,9 @@ function calculate() {
     haveErrors = false;
     validEmptyTextBoxes();
 
-    let a = validComponent(document.getElementById("inputA").value.replace(",", "."));
-    let b = validComponent(document.getElementById("inputB").value.replace(",", "."));
-    let c = validComponent(document.getElementById("inputC").value.replace(",", "."));
+    let a = parseFloat(document.getElementById("inputA").value.replace(",", "."));
+    let b = parseFloat(document.getElementById("inputB").value.replace(",", "."));
+    let c = parseFloat(document.getElementById("inputC").value.replace(",", "."));
 
     if (a == 0) {
         alert("O valor de \"A\" não pode ser 0");
@@ -47,14 +47,6 @@ function calculateX(varB, delt, varA, operation) {
         up = - varB - delt;
     }
     return up / varA;
-}
-function validComponent(component) {
-    if(isNaN(component)){
-        alert("O valor: " + component + " é inválido");
-        haveErrors = true;
-    }
-
-    return parseFloat(component);
 }
 function validEmptyTextBoxes() {
     if (document.getElementById("inputA").value == "") {
