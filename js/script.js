@@ -4,9 +4,9 @@ function calculate() {
     errors = false;
     validEmptyTextBoxes();
 
-    let a = validComponent(document.getElementById("inputA").value);
-    let b = validComponent(document.getElementById("inputB").value);
-    let c = validComponent(document.getElementById("inputC").value);
+    let a = validComponent(document.getElementById("inputA").value.replace(",", "."));
+    let b = validComponent(document.getElementById("inputB").value.replace(",", "."));
+    let c = validComponent(document.getElementById("inputC").value.replace(",", "."));
 
     if (a == 0) {
         alert("O valor de \"A\" não pode ser 0");
