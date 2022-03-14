@@ -1,6 +1,7 @@
 let errors = false;
 
 function calculate() {
+    errors = false;
     validEmptyTextBoxes();
 
     let a = validComponent(document.getElementById("inputA").value);
